@@ -1,4 +1,5 @@
 import uvicorn
+from config import GlobalSettings
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -10,4 +11,4 @@ def root():
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", port=9090)
+    uvicorn.run(app, host=GlobalSettings.ip, port=GlobalSettings.port, log_level="debug")
