@@ -1,6 +1,5 @@
 class GlobalSettings:
     LOG_FORMAT = "%(levelprefix)s %(asctime)s - %(message)s"
-
     LOGGER_CONF = {
         "dev": {
             "version": 1,
