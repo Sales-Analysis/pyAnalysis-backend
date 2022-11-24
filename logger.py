@@ -1,8 +1,6 @@
 from logging.config import dictConfig
 from fastapi.logger import logger
-from config import get_config
+from config import LOGGER_CONF
 
 logger = logger
-settings = get_config()
-
-dictConfig(settings.LOGGER_CONF["dev"])
+dictConfig(LOGGER_CONF["dev"])
