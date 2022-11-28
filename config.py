@@ -1,6 +1,5 @@
 from pydantic import BaseSettings
-from dotenv import load_dotenv
-
+from dotenv import dotenv_values
 
 LOG_FORMAT = "%(levelprefix)s %(asctime)s - %(message)s"
 LOGGER_CONF = {
@@ -28,16 +27,14 @@ LOGGER_CONF = {
     }
 }
 
-load_dotenv()
-
 
 class GlobalSettings(BaseSettings):
-    IP: str = "127.0.0.1"
-    PORT: int = 9090
-
     class Config:
         env_file: str = ".env"
 
 
+dotenv_values = dotenv_values(GlobalSettings.Config.env_file)
+
+
 def get_config():
-    return GlobalSettings()
+    return dotenv_values
