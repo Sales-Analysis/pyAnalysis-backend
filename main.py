@@ -13,4 +13,4 @@ def root():
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host=settings.IP, port=settings.PORT, log_level="debug")
+    uvicorn.run(app, host=settings.get("IP"), port=int(settings.get("PORT")), log_level="debug")
