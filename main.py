@@ -10,12 +10,12 @@ app = FastAPI()
 
 
 @app.get("/")
-def root():
+async def root():
     return {"message": "Hello"}
 
 
 @app.get("/analysis/{type_analysis}")
-def get_analysis(type_analysis: str) -> JSONResponse:
+async def get_analysis(type_analysis: str) -> JSONResponse:
     if type_analysis != 'ABC':
         return JSONResponse(
             status_code=status.HTTP_400_BAD_REQUEST,
