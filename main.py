@@ -1,4 +1,5 @@
 import uvicorn
+import os
 from config import get_config
 from fastapi import FastAPI, status
 from fastapi.responses import JSONResponse, FileResponse
@@ -29,7 +30,6 @@ async def get_analysis(type_analysis: str) -> JSONResponse:
 
 @app.get("/report")
 async def get_report() -> FileResponse:
-    import os
     basedir = os.path.abspath(os.path.dirname(__file__))
     return FileResponse(path=f'{basedir}/data/abc_result.xlsx')
 
