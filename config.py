@@ -1,5 +1,7 @@
+import os
 from pydantic import BaseSettings
 from dotenv import dotenv_values
+
 
 LOG_FORMAT = "%(levelprefix)s %(asctime)s - %(message)s"
 LOGGER_CONF = {
@@ -26,6 +28,10 @@ LOGGER_CONF = {
         },
     }
 }
+
+
+class BaseDir:
+    BASEDIR: str = os.path.abspath(os.path.dirname(__file__))
 
 
 class GlobalSettings(BaseSettings):
