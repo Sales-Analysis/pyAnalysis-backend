@@ -30,13 +30,10 @@ LOGGER_CONF = {
 }
 
 
-class BaseDir:
-    BASEDIR: str = os.path.abspath(os.path.dirname(__file__))
-
-
 class GlobalSettings(BaseSettings):
     class Config:
         env_file: str = ".env"
+        BASEDIR: str = os.path.abspath(os.path.dirname(__file__))
 
 
 dotenv_values = dotenv_values(GlobalSettings.Config.env_file)
