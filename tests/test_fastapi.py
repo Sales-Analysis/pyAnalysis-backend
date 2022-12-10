@@ -31,3 +31,9 @@ class TestGroup:
         assert response.status_code == 200
         assert int(dict(response.headers).get('content-length')) > 1000
         assert result == data_output
+
+    def test_upload(self):
+        path = "../data/abc_test.xlsx"
+        files = {"file": open(path, "rb")}
+        requests = client.post("/uploadfile", files=files)
+        assert requests.status_code == 200

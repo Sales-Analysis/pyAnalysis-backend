@@ -1,8 +1,8 @@
 import uvicorn
-from config import get_config, GlobalSettings
-from fastapi import FastAPI, status
-from fastapi.responses import JSONResponse, FileResponse
-
+import aiofiles
+from config import get_config, GlobalSettings, create_temp_dir
+from fastapi import FastAPI, status, File, UploadFile
+from fastapi.responses import JSONResponse, FileResponse, Response
 
 settings = get_config()
 
@@ -32,6 +32,18 @@ async def get_report() -> FileResponse:
     return FileResponse(path=f'{GlobalSettings.Config.BASEDIR}/data/abc_result.xlsx')
 
 
+@app.post("/uploadfile")
+def create_upload_file(file: UploadFile) -> Response:
+    create_temp_dir()
+    upload_file = file.file.read()
+    with open(
+            f'{GlobalSettings.Config.BASEDIR}/data/temp/{file.filename}',
+            'wb'
+    ) as f:
+        f.write(upload_file)
+    return Response(content="File successfully uploaded", status_code=status.HTTP_200_OK)
+
+
 if __name__ == "__main__":
     uvicorn.run(
         app,
@@ -39,3 +51,4 @@ if __name__ == "__main__":
         port=int(settings.get("PORT")),
         log_level="debug"
     )
+
