@@ -1,5 +1,8 @@
 import openpyxl
+import pytest
 from io import BytesIO
+
+from code_errors import InvalidFormatFile
 from main import app
 from fastapi.testclient import TestClient
 
@@ -37,3 +40,10 @@ class TestGroup:
         files = {"file": open(path, "rb")}
         requests = client.post("/uploadfile", files=files)
         assert requests.status_code == 200
+
+    def test_invalid_format(self):
+        path = "../data/invalid_format.txt"
+        files = {"file": open(path, "rb")}
+        request = client.post("/uploadfile", files=files)
+        assert request.status_code == 400
+        assert request.text == '{"error":"Неверный формат файла invalid_format.txt. Допустимые форматы (xlsx, csv)."}'
