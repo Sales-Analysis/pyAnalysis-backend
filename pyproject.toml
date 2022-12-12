@@ -13,6 +13,8 @@ uvicorn = "^0.20.0"
 python-dotenv = "^0.21.0"
 pyanalysis = {path = "../abc_test/pyAnalysis"}
 httpx = "^0.23.1"
+aiofiles = "^22.1.0"
+python-multipart = "^0.0.5"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
