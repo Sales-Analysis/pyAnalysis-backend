@@ -28,7 +28,7 @@ async def get_analysis(type_analysis: str) -> JSONResponse:
 app.include_router(reports.router)
 
 
-@app.exception_handler(InvalidFormatFile)  # for func create_upload_file in reports.py
+@app.exception_handler(InvalidFormatFile)  # for func post_report in reports.py
 async def invalid_format_file(request: Request, exc: InvalidFormatFile) -> JSONResponse:
     return JSONResponse(
         status_code=status.HTTP_400_BAD_REQUEST,
