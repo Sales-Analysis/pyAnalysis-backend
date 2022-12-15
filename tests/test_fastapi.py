@@ -1,8 +1,5 @@
 import openpyxl
-import pytest
 from io import BytesIO
-
-from code_errors import InvalidFormatFile
 from main import app
 from fastapi.testclient import TestClient
 
@@ -11,11 +8,6 @@ client = TestClient(app)
 
 
 class TestGroup:
-    def test_endpoint_get(self):
-        response = client.get("/")
-        assert response.status_code == 200
-        assert response.json() == {"message": "Hello"}
-
     def test_get_analysis_positive(self):
         response = client.get("/analysis/ABC")
         assert response.status_code == 200
