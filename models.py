@@ -1,11 +1,14 @@
 from enum import Enum
 from typing import List, Union
-
 from pydantic import BaseModel
 
 
 class AnalysisModel(str, Enum):
     ABC = 'ABC'
+
+
+class AnalysisModel2(BaseModel):
+    type: str = None
 
 
 class ABCModels(str, Enum):
