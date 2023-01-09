@@ -111,3 +111,18 @@ def data_output():
             ('3', 'Товар 3', 8, '4.37', '97.27', 'C'),
             ('5', 'Товар 5', 5, '2.73', '100.00', 'C')
             ]
+
+
+@pytest.fixture
+def analysis_list():
+    return [
+        {'name': 'ABC', 'description': 'some description', 'status': True},
+        {'name': 'XYZ', 'description': 'some description', 'status': False},
+        {'name': 'ABC XYZ', 'description': 'some description', 'status': False},
+        {'name': 'FMR', 'description': 'some description', 'status': False},
+        {'name': 'RFM', 'description': 'some description', 'status': False},
+        {'name': 'FMR RFM', 'description': 'some description', 'status': False},
+        {'name': 'VEN', 'description': 'some description', 'status': False},
+        {'name': 'SWOT', 'description': 'some description', 'status': False},
+
+    ]

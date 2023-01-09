@@ -7,7 +7,7 @@ from models import InputModel, ABCModels
 
 
 def read_exel(path: str) -> InputModel:
-    """Читает входной exel файл и возвращает в виде словаря"""
+    """Читает входной exel файл и возвращает в виде словаря."""
     wb = openpyxl.load_workbook(path)
     worksheet = wb.worksheets[0]
     iter_rows = worksheet.iter_rows()
@@ -28,10 +28,10 @@ def read_exel(path: str) -> InputModel:
 
 
 def convert_dict(
-        header: List[str],
-        rows: List[Dict[str, List[Union[int, str, float]]]]
+    header: List[str],
+    rows: List[Dict[str, List[Union[int, str, float]]]]
 ) -> Dict[str, List[Union[int, str, float]]]:
-    """Конвертирует в один словарь"""
+    """Конвертирует в один словарь."""
     result: Dict[str, List[Union[int, str, float]]] = {name: [] for name in header}
     for row in rows:
         for cell, name in zip(row, header):

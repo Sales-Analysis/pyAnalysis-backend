@@ -1,5 +1,6 @@
 import uvicorn
 import reports
+import upload_file
 from code_errors import InvalidFormatFile
 from config import get_config
 from fastapi import FastAPI, status
@@ -26,9 +27,10 @@ async def get_analysis(type_analysis: str) -> JSONResponse:
 
 
 app.include_router(reports.router)
+app.include_router(upload_file.router)
 
 
-@app.exception_handler(InvalidFormatFile)  # for func post_report in reports.py
+@app.exception_handler(InvalidFormatFile)  # for func post_report in upload_file.py
 async def invalid_format_file(request: Request, exc: InvalidFormatFile) -> JSONResponse:
     return JSONResponse(
         status_code=status.HTTP_400_BAD_REQUEST,
