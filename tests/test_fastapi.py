@@ -39,3 +39,11 @@ class TestGroup:
         request = client.post("/uploadfile", files=files)
         assert request.status_code == 400
         assert request.text == '{"error":"Неверный формат файла invalid_format.txt. Допустимые форматы (xlsx, csv)."}'
+
+    def test_analysis_type(self, analysis_list):
+        response = client.get("/typeAnalysis")
+        result = response.json()
+        assert response.status_code == 200
+        assert analysis_list == result
+
+

@@ -4,17 +4,18 @@ version = "0.1.0"
 description = ""
 authors = ["MurVladimirOS <ekliiehxmeh@gmail.com>"]
 readme = "README.md"
-packages = [{include = "pyanalysis_backend"}]
+# packages = [{include = "pyanalysis_backend"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
 fastapi = "^0.87.0"
 uvicorn = "^0.20.0"
 python-dotenv = "^0.21.0"
-pyanalysis = {path = "../abc_test/pyAnalysis"}
+#pyanalysis = {path = "../abc_test/pyAnalysis"} # TODO пока не добавили все в платформу
 httpx = "^0.23.1"
 aiofiles = "^22.1.0"
 python-multipart = "^0.0.5"
+openpyxl = "^3.0.10"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

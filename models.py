@@ -3,8 +3,10 @@ from typing import List, Union
 from pydantic import BaseModel
 
 
-class AnalysisModel(str, Enum):
-    ABC = 'ABC'
+class AnalysisModel(BaseModel):
+    name: str
+    description: str
+    status: bool
 
 
 class AnalysisModel2(BaseModel):
