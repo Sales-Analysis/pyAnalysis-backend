@@ -7,6 +7,7 @@ class AnalysisModel(BaseModel):
     name: str
     description: str
     status: bool
+    img: str
 
 
 class AnalysisModel2(BaseModel):
