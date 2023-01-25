@@ -1,15 +1,17 @@
 from typing import List, Dict, Union
-
 from fastapi import APIRouter
 from fastapi.responses import FileResponse
 from config import GlobalSettings
 from models import AnalysisModel
+from logger import logger
+
 
 router = APIRouter()
 
 
 @router.get("/report")
 async def get_report() -> FileResponse:
+    logger.info("get report")
     return FileResponse(path=f'{GlobalSettings.Config.BASEDIR}/data/abc_result.xlsx')
 
 
@@ -75,5 +77,7 @@ ANALYSIS_LIST: List[Dict[str, Union[str, bool]]] = [
 
 @router.get("/typeAnalysis", response_model=List[AnalysisModel])
 async def get_type_analysis():
+    logger.info('get all type analysis')
     result = [AnalysisModel(**i) for i in ANALYSIS_LIST]
+    logger.info('types of analysis successfully received')
     return result
