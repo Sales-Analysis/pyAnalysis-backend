@@ -13,19 +13,6 @@ settings = get_config()
 app = FastAPI()
 
 
-@app.get("/analysis/{type_analysis}")
-async def get_analysis(type_analysis: str) -> JSONResponse:
-    if type_analysis != 'ABC':
-        return JSONResponse(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            content={'error': 'analysis not found'}
-        )
-    return JSONResponse(
-        status_code=status.HTTP_200_OK,
-        content={'message': 'hello world'},
-    )
-
-
 app.include_router(reports.router)
 app.include_router(upload_file.router)
 
