@@ -20,12 +20,14 @@ def get_config():
     return dotenv_values
 
 
-def create_temp_dir():
-    myuuid = str(uuid.uuid4())
-    temp_dir = f'{GlobalSettings.Config.BASEDIR}/data/{myuuid}'
+def create_name_temp_dir():
+    return str(uuid.uuid4())
+
+
+def create_temp_dir(uuid):
+    temp_dir = f'{GlobalSettings.Config.BASEDIR}/data/{uuid}'
     if not os.path.exists(temp_dir):
         os.mkdir(temp_dir)
-        return temp_dir
 
 
 def del_temp_dir():

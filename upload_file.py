@@ -1,7 +1,7 @@
 from fastapi import APIRouter, UploadFile, status, File, Depends
 from fastapi.responses import Response, JSONResponse
 from code_errors import InvalidFormatFile
-from config import GlobalSettings, create_temp_dir, create_tmp_dir
+from config import create_temp_dir, create_name_temp_dir, GlobalSettings
 from models import AnalysisModel2
 from validators import check_format_files
 from logger import logger
@@ -22,9 +22,10 @@ async def post_report(prop: AnalysisModel2 = Depends(), file: UploadFile = File(
     if not check_format_files(content_type=file.content_type):
         logger.error("Format file is not valid")
         raise InvalidFormatFile(name=file.filename)
-    temp_name_dir = create_temp_dir()
+    temp_name_dir = create_name_temp_dir()
+    create_temp_dir(temp_name_dir)
     with open(
-            f'{temp_name_dir}/{file.filename}',
+            f'{GlobalSettings.Config.BASEDIR}/data/{temp_name_dir}/{file.filename}',
             'wb'
     ) as f:
         f.write(upload_file)
