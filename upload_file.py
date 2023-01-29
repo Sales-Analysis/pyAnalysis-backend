@@ -24,9 +24,10 @@ async def post_report(prop: AnalysisModel2 = Depends(), file: UploadFile = File(
         logger.error("Format file is not valid")
         raise InvalidFormatFile(name=file.filename)
     temp_name_dir = create_name_project()
-    create_temp_dir(temp_name_dir)
+    path_temp_dir = f'{GlobalSettings.Config.BASEDIR}/data/{temp_name_dir}'
+    create_temp_dir(path=path_temp_dir)
     with open(
-            f'{GlobalSettings.Config.BASEDIR}/data/{temp_name_dir}/{file.filename}',
+            f'{path_temp_dir}/{file.filename}',
             'wb'
     ) as f:
         f.write(upload_file)

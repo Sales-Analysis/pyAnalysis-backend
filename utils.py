@@ -9,9 +9,8 @@ def create_name_project() -> str:
 
 
 def create_temp_dir(path: str) -> None:
-    temp_dir = f'{GlobalSettings.Config.BASEDIR}/data/{path}'
-    if not os.path.exists(temp_dir):
-        os.mkdir(temp_dir)
+    if not os.path.exists(path):
+        os.mkdir(path)
 
 
 def del_temp_dir():
