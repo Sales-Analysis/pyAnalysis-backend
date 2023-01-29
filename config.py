@@ -1,5 +1,8 @@
 import os
 import shutil
+import tempfile
+import pathlib
+import uuid
 from pydantic import BaseSettings
 from dotenv import dotenv_values
 
@@ -18,9 +21,11 @@ def get_config():
 
 
 def create_temp_dir():
-    temp_dir = f'{GlobalSettings.Config.BASEDIR}/data/temp'
+    myuuid = str(uuid.uuid4())
+    temp_dir = f'{GlobalSettings.Config.BASEDIR}/data/{myuuid}'
     if not os.path.exists(temp_dir):
         os.mkdir(temp_dir)
+        return temp_dir
 
 
 def del_temp_dir():
