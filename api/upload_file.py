@@ -2,8 +2,8 @@ from fastapi import APIRouter, UploadFile, status, File, Depends
 from fastapi.responses import Response, JSONResponse
 from code_errors import InvalidFormatFile
 from config import GlobalSettings
-from utils import create_name_project, create_temp_dir
-from models import AnalysisModel2
+from utils.utils import create_name_project, create_temp_dir
+from models.models import AnalysisModel2
 from validators import check_format_files
 from logger import logger
 
