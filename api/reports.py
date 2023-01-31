@@ -4,7 +4,7 @@ from fastapi.responses import FileResponse
 from config import GlobalSettings
 from models import AnalysisModel
 from logger import logger
-from services.services import get_analysis_list
+from services.reports import get_analysis_list
 
 router = APIRouter()
 
