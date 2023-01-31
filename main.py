@@ -1,6 +1,6 @@
 import uvicorn
-import reports
 import upload_file
+from api import reports
 from code_errors import InvalidFormatFile
 from config import get_config
 from fastapi import FastAPI, status
