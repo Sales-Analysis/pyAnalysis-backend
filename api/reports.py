@@ -2,7 +2,7 @@ from typing import List
 from fastapi import APIRouter
 from fastapi.responses import FileResponse
 from config import GlobalSettings
-from models import AnalysisModel
+from models.models import AnalysisModel
 from logger import logger
 from services.reports import get_analysis_list
 
