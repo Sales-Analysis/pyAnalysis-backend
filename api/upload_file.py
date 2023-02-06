@@ -1,9 +1,11 @@
 from fastapi import APIRouter, UploadFile, status, File, Depends
 from fastapi.responses import Response, JSONResponse
+
+from code_errors import InvalidFormatFile
 from services.reports import upload_data_in_repository
 from models.models import AnalysisModel2
 from logger import logger
-
+from validators import check_format_files
 
 router = APIRouter()
 
@@ -18,5 +20,8 @@ async def post_report(prop: AnalysisModel2 = Depends(), file: UploadFile = File(
             content={'error': 'type analysis not found'}
         )
     upload_data_in_repository(file=file)
+    if not check_format_files(content_type=file.content_type):
+        logger.error("Format file is not valid")
+        raise InvalidFormatFile(name=file.filename)
     logger.info("File successfully uploaded")
     return Response(content="File successfully uploaded", status_code=status.HTTP_200_OK)
