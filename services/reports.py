@@ -1,10 +1,6 @@
 from typing import List, Dict, Union
-from code_errors import InvalidFormatFile
 from config import GlobalSettings
-from fastapi import UploadFile, File
-from logger import logger
 from utils.utils import create_name_project, create_temp_dir
-from validators import check_format_files
 
 
 ANALYSIS_LIST: List[Dict[str, Union[str, bool]]] = [
