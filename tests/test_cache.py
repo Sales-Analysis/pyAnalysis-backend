@@ -1,5 +1,4 @@
 import time
-
 from caching import cache_lru
 
 
@@ -8,7 +7,6 @@ def simple_cache(limit: int):
     arr = []
     for i in range(0, limit):
         arr.append(i)
-        print(i)
         time.sleep(2)
     return arr
 
@@ -24,4 +22,3 @@ def test_cache_lru():
 
     assert finish_time2 < finish_time
     assert finish_time2 == 0
-
