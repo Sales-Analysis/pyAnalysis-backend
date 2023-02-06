@@ -1,5 +1,6 @@
 from typing import List, Dict, Union
 from config import GlobalSettings
+from utils.utils import create_name_project, create_temp_dir
 
 
 ANALYSIS_LIST: List[Dict[str, Union[str, bool]]] = [
@@ -64,3 +65,14 @@ ANALYSIS_LIST: List[Dict[str, Union[str, bool]]] = [
 
 def get_analysis_list() -> List[Dict[str, Union[str, bool]]]:
     return ANALYSIS_LIST
+
+
+def upload_data_in_repository(upload_file: bytes, filename: str) -> None:
+    temp_name_dir = create_name_project()
+    path_temp_dir = f'{GlobalSettings.Config.BASEDIR}/data/{temp_name_dir}'
+    create_temp_dir(path=path_temp_dir)
+    with open(
+            f'{path_temp_dir}/{filename}',
+            'wb'
+    ) as f:
+        f.write(upload_file)
