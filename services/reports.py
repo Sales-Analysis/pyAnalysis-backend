@@ -71,13 +71,12 @@ def get_analysis_list() -> List[Dict[str, Union[str, bool]]]:
     return ANALYSIS_LIST
 
 
-def upload_data_in_repository(file: UploadFile = File(...)) -> None:
-    upload_file = file.file.read()
+def upload_data_in_repository(upload_file: bytes, filename: str) -> None:
     temp_name_dir = create_name_project()
     path_temp_dir = f'{GlobalSettings.Config.BASEDIR}/data/{temp_name_dir}'
     create_temp_dir(path=path_temp_dir)
     with open(
-            f'{path_temp_dir}/{file.filename}',
+            f'{path_temp_dir}/{filename}',
             'wb'
     ) as f:
         f.write(upload_file)

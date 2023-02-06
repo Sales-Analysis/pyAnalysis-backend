@@ -19,9 +19,10 @@ async def post_report(prop: AnalysisModel2 = Depends(), file: UploadFile = File(
             status_code=status.HTTP_400_BAD_REQUEST,
             content={'error': 'type analysis not found'}
         )
-    upload_data_in_repository(file=file)
     if not check_format_files(content_type=file.content_type):
         logger.error("Format file is not valid")
         raise InvalidFormatFile(name=file.filename)
+    upload_file = file.file.read()
+    upload_data_in_repository(upload_file=upload_file, filename=file.filename)
     logger.info("File successfully uploaded")
     return Response(content="File successfully uploaded", status_code=status.HTTP_200_OK)
